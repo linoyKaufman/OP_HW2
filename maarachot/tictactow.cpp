@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -6,20 +7,21 @@
 #define BOARD_SIZE 3
 #define MAX_MOVES 9
 
-// פונקציה לבדיקת תקינות הקלט (מספר 9 ספרות ייחודיות בין 1 ל-9)
+// Function to validate the input (a 9-digit unique number containing digits from 1 to 9)
 int validate_input(char *strategy) {
-    if (strlen(strategy) != 9) return 0;
+    if (strlen(strategy) != 9) return 0;   // Check if the strategy length is exactly 9
     int digits[10] = {0};
     for (int i = 0; i < 9; i++) {
         if (!isdigit(strategy[i]) || strategy[i] == '0') return 0;
         int num = strategy[i] - '0';
-        if (digits[num]) return 0; // בדיקה אם הספרה כבר הופיעה
+        if (digits[num]) return 0; // Array to track digit appearances
         digits[num] = 1;
     }
     return 1;
 }
 
-// פונקציה להדפסת הלוח
+
+// print the board
 void print_board(char board[BOARD_SIZE][BOARD_SIZE]) {
     for (int i = 0; i < BOARD_SIZE; i++) {
         for (int j = 0; j < BOARD_SIZE; j++) {
@@ -69,7 +71,7 @@ int main(int argc, char *argv[]) {
     int move_count = 0;
 
     while (1) {
-        int move = play_move(strategy, board); // תוכנית משחקת
+        play_move(strategy, board); // תוכנית משחקת
         move_count++;
         if (check_win(board, 'X')) { // בדיקת ניצחון
             printf("I win\n");
@@ -100,3 +102,5 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+
+
